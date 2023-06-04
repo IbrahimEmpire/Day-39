@@ -13,7 +13,7 @@ app.get("/",(req, res)=>{
 
 
 
-
+// Create TimeStamp
 
 app.get("/time", (req, res)=>{
     const time=new Date().toISOString().replace(/T/, ",Time-->").replace(/:/,'-').replace(/\..+/, '')
@@ -30,6 +30,19 @@ app.get("/time", (req, res)=>{
     res.status(200).send("Date and Time Created On TimeStamp Folder")
 })
 
+// Delete Current TimeStamp
+
+app.get("/delete",(req, res)=>{
+
+    fs.unlink("./TimeStamp/date-time.txt",(err)=>{
+        if(err){
+            console.log(err)
+        }else{
+            console.log("file deleted")
+        }
+    })
+    res.send("TimeStamp File Deleted Succesfull")
+})
 
 
 
